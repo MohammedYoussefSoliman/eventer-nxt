@@ -21,7 +21,6 @@ export const Container = styled("div", { shouldForwardProp })<ContainerProps>`
   ${({ type }) =>
     type === "normal"
       ? css`
-          border-radius: 15px;
           padding: 8px;
           ${devices.md} {
             padding: 12px;
@@ -42,12 +41,12 @@ export const Container = styled("div", { shouldForwardProp })<ContainerProps>`
           background: ${theme.colors.pallet[500]};
         `,
         failure: css`
-          border: 1px solid ${theme.colors.red[600]};
-          background: ${theme.colors.shades[100]};
+          border: 1px solid ${theme.colors.text.error};
+          background: ${theme.colors.pallet[100]};
         `,
         success: css`
-          border: 1px solid ${theme.colors.green[500]};
-          background: ${theme.colors.shades[100]};
+          border: 1px solid ${theme.colors.text.success};
+          background: ${theme.colors.pallet[100]};
         `,
       },
       filled: {
@@ -55,10 +54,10 @@ export const Container = styled("div", { shouldForwardProp })<ContainerProps>`
           background: ${theme.colors.pallet[500]};
         `,
         failure: css`
-          background: ${theme.colors.error[300]};
+          background: ${theme.colors.text.error};
         `,
         success: css`
-          background: ${theme.colors.green[500]};
+          background: ${theme.colors.text.success};
         `,
       },
     };

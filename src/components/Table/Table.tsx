@@ -8,8 +8,7 @@ import TableFooter from "./TableFooter";
 export default function Table<T extends { [key: string]: any }>({
   headers,
   tableData,
-  totalRecords,
-  paginationControls,
+  footer,
 }: TableProps<T>) {
   const { tHeaders, tRows } = useTable({ headers, tableData });
   return (
@@ -32,11 +31,7 @@ export default function Table<T extends { [key: string]: any }>({
           ))}
         </tbody>
       </StyledTable>
-      <TableFooter
-        perPage={tableData.length}
-        paginationControls={paginationControls}
-        totalRecords={totalRecords}
-      />
+      <TableFooter perPage={tableData.length} {...footer} />
     </TableWrapper>
   );
 }

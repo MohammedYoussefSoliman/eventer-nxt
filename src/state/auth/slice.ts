@@ -1,29 +1,16 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import loginService from "./loginService";
-import logoutService from "./logoutService";
-import profileService from "./profileService";
 import { AuthState } from "../types";
 
-const { getService: getUserProfile, postService: updateUserProfile } =
-  profileService;
-
 const initialState: AuthState = {
-  token: null,
+  token: {
+    value:
+      "Bearer eyJhbGciOiJSUzI1NiJ9.eyJpZCI6MzAzLCJ0eXBlIjoidXNlciIsInJhbiI6IkJORU5WSVBOTlFUWVBMS0tVQ0JWIiwic3RhdHVzIjoxfQ.YGV-jGKZj1Lp4SqlM3aiF6Aov6YVF6lZRMpKvx_Zdrpjj4C1zE-JSTKtjVboQ9de58TUViyVOc4JwiktjF_4yxnYzIrw449s584j2GiqUpxfp6OPmfAj8BAbfN_M4RoU5PXEjhcNVh5uNRtxtvxZtpECrl72_22T4he3LbqISMNHzVh5eprIKIFLt_pM7cyRKt3Njf8I89CLnq5nUpiDHnMMForamKq9jubmiYPOHpFvijEE3-jusRk0F1T32zMY_0AELXnpqhbbx6HtmMdxBahnrUNyznacdVwaSrNus8vX01N8zEcfRvkRzYuqjnZXr9jrm2iriHq80iicUG99GQ",
+  },
   user: {
     roles: ["speaker"],
     firstName: "",
     lastName: "",
   },
-};
-
-const authInit = (state: AuthState, action: PayloadAction<any>) => {
-  const { accessToken } = action.payload.records;
-  return {
-    ...state,
-    token: {
-      value: `${accessToken.type} ${accessToken.token}`,
-    },
-  };
 };
 
 const doLogout = (state: AuthState) => ({
@@ -36,20 +23,6 @@ const doLogout = (state: AuthState) => ({
   },
 });
 
-const updateUserState = (state: AuthState, action: PayloadAction<any>) => {
-  const { firstName, lastName, avatar, id, roles } = action.payload;
-  return {
-    ...state,
-    user: {
-      roles,
-      avatar,
-      firstName,
-      lastName,
-      id,
-    },
-  };
-};
-
 const slice = createSlice({
   name: "app/authentication",
   initialState,
@@ -58,16 +31,6 @@ const slice = createSlice({
     setRememberMe(state, action: PayloadAction<boolean>) {
       return { ...state, rememberMe: action.payload };
     },
-  },
-  extraReducers: {
-    [getUserProfile.fulfilled.type]: updateUserState,
-    [getUserProfile.rejected.type]: (state: AuthState) => state,
-    [updateUserProfile.fulfilled.type]: updateUserState,
-    [updateUserProfile.rejected.type]: (state: AuthState) => state,
-    [loginService.fulfilled.type]: authInit,
-    [loginService.rejected.type]: () => initialState,
-    [logoutService.fulfilled.type]: doLogout,
-    [logoutService.rejected.type]: doLogout,
   },
 });
 

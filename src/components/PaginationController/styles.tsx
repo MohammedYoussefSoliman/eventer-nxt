@@ -26,12 +26,12 @@ export const DotButton = styled(Button)<StepButtonType>`
   min-width: unset;
   z-index: 2;
   ${({ theme, active }) => css`
-    color: ${active ? theme.colors.pallet[0] : theme.colors.pallet[100]};
+    color: ${active ? theme.colors.pallet[900] : theme.colors.pallet[0]};
     border-bottom: none;
     border-top: none;
-    background-color: ${theme.colors.pallet[800]};
+    background-color: ${theme.colors.pallet[active ? 0 : 800]};
     &:hover {
-      background-color: ${theme.colors.pallet[700]};
+      background-color: ${theme.colors.pallet[active ? 100 : 700]};
     }
   `}
 `;

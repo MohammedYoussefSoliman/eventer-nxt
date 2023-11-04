@@ -6,7 +6,7 @@ import { TableProps, Thead, TRow, TRows } from "./table.types";
 const useTable = <T extends { [key: string]: any }>({
   headers,
   tableData,
-}: Omit<TableProps<T>, "paginationControls" | "totalRecords">) => {
+}: Omit<TableProps<T>, "footer">) => {
   const { colors } = useTheme();
 
   // build the headers

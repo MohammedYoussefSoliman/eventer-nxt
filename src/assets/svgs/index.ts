@@ -15,6 +15,7 @@ import Cloud from "./Cloud";
 import QuestionMark from "./QuestionMark";
 import ChevronCircle from "./ChevronCircle";
 import Circle from "./Circle";
+import Edit from "./Edit";
 
 const icons = {
   "chevron-down": ChevronDown,
@@ -35,6 +36,7 @@ const icons = {
   question: Cloud,
   "question-mark": QuestionMark,
   circle: Circle,
+  edit: Edit,
 };
 
 export default icons;

@@ -3,9 +3,10 @@ import React from "react";
 import { PaginationProps } from "@/components/PaginationController/types";
 
 export type FooterProps = {
+  count: number;
+  limit: number;
   perPage: number;
-  totalRecords: number;
-  paginationControls: PaginationProps;
+  paginationControls: Omit<PaginationProps, "pagesLength">;
 };
 
 export type TableProps<T extends { [key: string]: any }> = {
@@ -16,8 +17,11 @@ export type TableProps<T extends { [key: string]: any }> = {
     accessor: keyof T;
   }[];
   tableData: T[];
-  paginationControls: PaginationProps;
-  totalRecords: number;
+  footer: {
+    paginationControls: Omit<PaginationProps, "pagesLength">;
+    count: number;
+    limit: number;
+  };
 };
 
 export type Thead = { Element: React.ReactNode; mapKey: string }[];

@@ -32,8 +32,8 @@ function ContentComponent({
 }: ContentProps) {
   const { colors } = useTheme();
   const color = React.useMemo(() => {
-    if (status === "failure") return colors.error[300];
-    if (status === "success") return colors.green[500];
+    if (status === "failure") return colors.text.error;
+    if (status === "success") return colors.text.success;
     return colors.pallet[0];
   }, [colors, status]);
 
@@ -49,7 +49,7 @@ function ContentComponent({
           {message && (
             <P2
               text={message}
-              color={type === "filled" ? colors.shades[100] : color}
+              color={type === "filled" ? colors.pallet[600] : color}
             />
           )}
         </Flex>

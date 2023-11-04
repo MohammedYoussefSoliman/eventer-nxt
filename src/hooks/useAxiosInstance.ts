@@ -1,7 +1,7 @@
 import axios, { AxiosError, AxiosInstance, AxiosResponse } from "axios";
 import { useAppSelector } from "./reduxHooks";
 
-export default function useAxiosInstance(language?: "en" | "ar") {
+export default function useAxiosInstance() {
   const {
     auth: { token },
   } = useAppSelector((state) => state);
