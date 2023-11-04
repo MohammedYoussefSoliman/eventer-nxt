@@ -23,7 +23,7 @@ function Spinner(props: SpinnerProps) {
       <MuiCircularProgress
         variant="determinate"
         sx={{
-          color: bottomColor || colors.pallet[500],
+          color: bottomColor || colors.pallet[400],
           animationDuration: "900ms",
           position: "absolute",
           left: 0,
@@ -37,7 +37,7 @@ function Spinner(props: SpinnerProps) {
         variant="indeterminate"
         disableShrink
         sx={{
-          color: topColor || colors.pallet[100],
+          color: topColor || colors.pallet[200],
           animationDuration: "900ms",
           position: "absolute",
           left: 0,

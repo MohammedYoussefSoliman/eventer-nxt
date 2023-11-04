@@ -3,16 +3,14 @@ import styled from "@emotion/styled";
 const LayoutWrapper = styled.div`
   label: app-wrapper;
   display: flex;
+  flex-direction: column;
   width: 100%;
   .content {
     width: 100%;
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    height: calc(100vh - 62px);
     flex: 1;
-  }
-  .ps-sidebar-root {
-    height: 100vh;
   }
   &.empty {
     min-height: auto;

@@ -2,33 +2,16 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { Flex } from "@/components/Grids";
 
-type HeaderWrapper = {
-  scrolled?: boolean;
-  variant?: "white" | "transparent";
-};
-
-const Wrapper = styled(Flex)<HeaderWrapper>`
+const Wrapper = styled(Flex)`
   label: app-header;
-  position: fixed;
-  top: 0;
-  height: 80px;
+  height: 62px;
+  padding: 8px 20px;
   z-index: 1000;
-  ${({ theme, variant }) =>
-    variant === "white"
-      ? css`
-          position: sticky;
-          background: ${theme.colors.pallet[500]};
-        `
-      : css`
-          background: transparent;
-          .auth--button {
-            background-color: ${theme.colors.pallet[100]};
-          }
-        `}
-  ${({ theme, scrolled }) =>
-    scrolled &&
+  ${({ theme }) =>
     css`
-      background: ${theme.colors.pallet[100]};
+      position: sticky;
+      background: ${theme.colors.pallet[700]};
+      border-bottom: 1px solid ${theme.colors.pallet[500]};
     `}
 `;
 

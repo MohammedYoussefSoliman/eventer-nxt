@@ -1,15 +1,10 @@
+import { useTheme } from "@emotion/react";
 import { Flex } from "@/components/Grids";
+import { IconButton } from "@/components/Buttons";
 import { P1, P3 } from "@/components/Typography/Typography";
 import { usePagination } from "@/hooks";
 import { DotButton, Wrapper } from "./styles";
-
-type Props = {
-  pagesLength: number;
-  activePage: number;
-  handleNext: () => void;
-  dotClick: (value: number) => void;
-  handlePrev: () => void;
-};
+import { PaginationProps } from "./types";
 
 export default function PaginationController({
   pagesLength,
@@ -17,7 +12,8 @@ export default function PaginationController({
   dotClick,
   handlePrev,
   activePage = 1,
-}: Props) {
+}: PaginationProps) {
+  const { colors } = useTheme();
   const paging = usePagination({
     totalPageCount: pagesLength,
     currentPage: activePage,
@@ -26,19 +22,21 @@ export default function PaginationController({
   if (pagesLength <= 1) return null;
 
   return (
-    <Wrapper align="center" gap="12px">
-      {/* <IconButton
-        className="navigation--button"
+    <Wrapper align="center">
+      <IconButton
+        className="prev--button"
         disabled={activePage === 1}
         icon="chevron-left"
         onClick={() => handlePrev()}
-        size="sm"
-        variant="secondary"
-      /> */}
-      <Flex align="center" gap={{ xs: 5, md: 10 }}>
+      />
+      <Flex align="center">
         {paging.map((num) => {
           if (num === "...") {
-            return <P1 text={num} color="inherit" />;
+            return (
+              <Flex width="40px" justify="center" align="center">
+                <P1 text={num} color={colors.pallet[50]} />
+              </Flex>
+            );
           }
           return (
             <DotButton
@@ -53,14 +51,12 @@ export default function PaginationController({
           );
         })}
       </Flex>
-      {/* <IconButton
-        className="navigation--button"
+      <IconButton
+        className="next--button"
         disabled={activePage === pagesLength}
         onClick={() => handleNext()}
         icon="chevron-right"
-        size="sm"
-        variant="secondary"
-      /> */}
+      />
     </Wrapper>
   );
 }

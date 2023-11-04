@@ -1,7 +1,7 @@
 import { useTheme } from "@emotion/react";
 import { SVGprop } from "./types";
 
-function Times({ size, color }: SVGprop) {
+function Home({ size, color }: SVGprop) {
   const theme = useTheme();
 
   return (
@@ -13,13 +13,11 @@ function Times({ size, color }: SVGprop) {
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        fillRule="evenodd"
-        clipRule="evenodd"
-        d="M11.8177 12.9104L6.71109 18.017L5.29688 16.6028L10.4035 11.4962L5.61058 6.70328L7.0248 5.28906L11.8177 10.082L16.6106 5.28906L18.0248 6.70328L13.2319 11.4962L18.3385 16.6028L16.9243 18.017L11.8177 12.9104Z"
+        d="M7.76467 16.9412H9.88232H14.1176H16.2353V10.5882L12 7.41177L7.76467 10.5882V16.9412ZM6.35291 18.3529V9.88236L12 5.64706L17.647 9.88236V18.3529H12.7058H11.2941H6.35291Z"
         fill={color || theme.colors.pallet[200]}
       />
     </svg>
   );
 }
 
-export default Times;
+export default Home;

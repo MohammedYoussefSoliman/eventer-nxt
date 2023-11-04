@@ -26,10 +26,7 @@ export type NavLinkTypeProps = {
   children: string;
   className?: string;
   relative?: boolean;
-  hash?: string;
-  variant?: "normal" | "transparent";
-  mode?: "menu" | "bar";
-  callback?: () => void;
+  setActive?: (activeName: string) => void;
 };
 
 export type DirectLinkTypeProps = {

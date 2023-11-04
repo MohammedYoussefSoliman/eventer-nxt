@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import devices from "@/theme/sizes";
+import { Button } from "@/components/Buttons";
 import { Flex } from "../Grids";
 
 type StepButtonType = {
@@ -9,51 +9,29 @@ type StepButtonType = {
 
 export const Wrapper = styled(Flex)`
   label: pagination-wrapper;
-  .navigation--button {
-    ${({ theme }) => css`
-      background-color: ${theme.colors.pallet[400]};
-    `}
-    &:disabled {
-      ${({ theme }) => css`
-        background-color: ${theme.colors.pallet[100]};
-      `}
+  ${({ theme: { colors } }) => css`
+    border: 1px solid ${colors.pallet[300]};
+    .next--button,
+    .prev--button {
+      border: none;
+      background-color: ${colors.pallet[800]};
+      &:hover {
+        background-color: ${colors.pallet[700]};
+      }
     }
-  }
+  `}
 `;
 
-export const DotButton = styled("button")<StepButtonType>`
-  label: step-button;
-  all: unset;
-  height: 32px;
-  width: 32px;
-  border-radius: 50px;
-  font-size: 12px;
-  font-family: inherit;
-  font-weight: 600;
-  overflow: hidden;
-  text-align: center;
-  cursor: pointer;
+export const DotButton = styled(Button)<StepButtonType>`
+  min-width: unset;
   z-index: 2;
   ${({ theme, active }) => css`
-    color: ${active ? theme.colors.pallet[500] : theme.colors.pallet[400]};
-    background-color: ${active
-      ? theme.colors.pallet[100]
-      : theme.colors.pallet[500]};
+    color: ${active ? theme.colors.pallet[0] : theme.colors.pallet[100]};
+    border-bottom: none;
+    border-top: none;
+    background-color: ${theme.colors.pallet[800]};
     &:hover {
-      background-color: ${active
-        ? theme.colors.pallet[50]
-        : theme.colors.pallet[400]};
+      background-color: ${theme.colors.pallet[700]};
     }
-    border: 2px solid ${theme.colors.pallet[0]};
   `}
-
-  ${devices.sm} {
-    font-size: 14px;
-  }
-  ${devices.md} {
-    font-size: 18px;
-    height: 45px;
-    width: 45px;
-    border-width: 3px;
-  }
 `;
