@@ -26,3 +26,16 @@ export type SessionTableProps = {
   dotClick: (value: number) => void;
   activePage: number;
 };
+
+export type SessionType = {
+  speaker_ids: (string | number)[];
+  moderator_ids: (string | number)[];
+  title: string;
+  subtitle: string;
+  description: string;
+  cover_image: string;
+  date: string;
+  from: string;
+  till: string;
+  event_id: number;
+};

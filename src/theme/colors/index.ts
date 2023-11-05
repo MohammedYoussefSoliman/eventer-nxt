@@ -1,1 +1,1 @@
-export * from "./colors";
+export { error, green, text, pallet } from "./colors";

@@ -1,6 +1,6 @@
 import React from "react";
-import moment from "moment";
 import { Controller, FieldValues, Path } from "react-hook-form";
+import { stringDateFormatToDate, convertTimeTo24 } from "@/helpers/functions";
 import { ControllerType, DateInputProps } from "../types";
 
 type WithControllerProps<T extends FieldValues> = ControllerType<T> &
@@ -25,18 +25,20 @@ export default function withHookFormController<
         render={({
           field: { ref, onChange, value, ...fields },
           fieldState: { error },
-        }) => (
-          <Component
-            {...fields}
-            inputRef={ref}
-            error={error?.message}
-            value={moment(value, "YYYY-MM-DD").toDate()}
-            onChange={(newValue: Date) => {
-              onChange(moment(newValue).format("YYYY-MM-DD"));
-            }}
-            {...rest}
-          />
-        )}
+        }) => {
+          return (
+            <Component
+              {...fields}
+              inputRef={ref}
+              error={error?.message}
+              value={stringDateFormatToDate(value)}
+              onChange={(newValue: Date) => {
+                onChange(convertTimeTo24(newValue));
+              }}
+              {...rest}
+            />
+          );
+        }}
       />
     );
   };

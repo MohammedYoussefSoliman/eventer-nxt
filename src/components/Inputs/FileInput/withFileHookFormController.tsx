@@ -7,7 +7,7 @@ type WithControllerProps<T extends FieldValues> = ControllerType<T> &
 
 export default function withHookFormController<
   FormType extends FieldValues,
-  Props extends WithControllerProps<FormType>,
+  Props extends WithControllerProps<FormType>
 >(Component: React.ComponentType<Omit<Props, keyof ControllerType<FormType>>>) {
   return function ControlledComponent({
     control,
@@ -28,9 +28,9 @@ export default function withHookFormController<
           <Component
             {...fields}
             inputRef={ref}
-            onChange={(fileId: string) => {
-              onChange(fileId);
-              if (changeHandler) changeHandler(fileId);
+            onChange={(event) => {
+              onChange(event.target.files);
+              if (changeHandler) changeHandler(event.target.files);
             }}
             error={error?.message}
             {...rest}

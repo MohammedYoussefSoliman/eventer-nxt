@@ -8,7 +8,7 @@ interface ContainerPropType {
 }
 
 export default function Container({
-  width = "wide",
+  width = "normal",
   children,
 }: ContainerPropType) {
   return (

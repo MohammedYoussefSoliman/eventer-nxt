@@ -1,6 +1,6 @@
 import React from "react";
 import { Route } from "react-router-dom";
-import AuthRoles from "@/modules/auth/AuthRoles";
+import AuthRoles from "@/auth/AuthRoles";
 import { useAuth } from "@/hooks";
 import { ConfiguredRoutes } from "./types";
 

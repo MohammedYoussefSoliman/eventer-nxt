@@ -11,7 +11,6 @@ export default React.forwardRef(
     {
       name,
       label,
-      variant = "outlined",
       prefixComponent,
       suffixComponent,
       width,
@@ -21,8 +20,6 @@ export default React.forwardRef(
       className,
       rounded,
       required,
-      borderless,
-      dense,
       helper,
       ...InputProps
     }: InputPropsType,
@@ -39,12 +36,8 @@ export default React.forwardRef(
         {label && <InputLabel label={label} required={required} />}
         <Wrapper
           className="input--wrapper"
-          variant={variant}
           height={height}
           error={!!error}
-          rounded={rounded}
-          borderless={borderless}
-          dense={dense}
           align="center"
           justify="space-between"
         >
@@ -52,10 +45,8 @@ export default React.forwardRef(
           <Input
             name={name}
             ref={ref}
-            variant={variant}
             error={!!error}
             adornment={Boolean(suffixComponent || prefixComponent)}
-            dense={dense}
             placeholder={placeholder}
             {...InputProps}
           />

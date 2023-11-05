@@ -1,4 +1,4 @@
-import { pallet, text } from "./colors";
+import { pallet, text, error, green } from "./colors";
 import { ThemeType } from "./types";
 
 const getTheme = (): ThemeType => ({
@@ -6,6 +6,8 @@ const getTheme = (): ThemeType => ({
   colors: {
     pallet,
     text,
+    error,
+    green,
   },
 });
 

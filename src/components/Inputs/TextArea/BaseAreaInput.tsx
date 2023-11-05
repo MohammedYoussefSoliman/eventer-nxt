@@ -32,21 +32,15 @@ export default function BaseInput({
       {label && <InputLabel label={label} required={required} />}
       <AreaWrapper
         className="area--wrapper"
-        variant={variant}
         height={height}
         error={!!error}
-        rounded={rounded}
-        borderless={borderless}
-        dense={dense}
         align="center"
         justify="space-between"
       >
         {prefixComponent && prefixComponent}
         <TextArea
-          variant={variant}
           error={!!error}
           adornment={Boolean(suffixComponent || prefixComponent)}
-          dense={dense}
           placeholder={placeholder}
           {...InputProps}
         />

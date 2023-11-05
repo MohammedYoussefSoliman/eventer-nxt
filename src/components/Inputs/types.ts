@@ -11,7 +11,6 @@ import {
   UseFormSetValue,
   UseFormGetValues,
   Control,
-  UseFormSetError,
 } from "react-hook-form";
 import { Property } from "csstype";
 
@@ -35,14 +34,11 @@ export interface InputPropsType
   className?: string;
   width?: Property.Width;
   height?: Property.Height;
-  dense?: boolean;
   prefixComponent?: React.ReactNode;
   suffixComponent?: React.ReactNode;
-  variant?: "filled" | "outlined";
   accepts?: string;
   rounded?: boolean;
   required?: true | string;
-  borderless?: boolean;
   changeHandler?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   helper?: React.ReactNode;
 }
@@ -76,11 +72,10 @@ export interface FileInputPropsType
   error?: string;
   className?: string;
   required?: true | string;
+  variant?: "small" | "wide";
   url?: string;
-  accepts?: string[];
-  section?: string;
-  setError?: UseFormSetError<any>;
   setValue: UseFormSetValue<any>;
+  watch: UseFormWatch<any>;
   changeHandler?: (fileId: string) => void;
 }
 
@@ -151,6 +146,15 @@ export type DateInputProps = {
   error?: string;
   onChange?: (value: Date | null | undefined) => void;
   value?: Date | null;
+  label?: string;
+  required?: true | string;
+};
+
+export type TimeInputProps = {
+  onChange?: (value: string | null | undefined) => void;
+  value?: string | null;
+  name: string;
+  error?: string;
   label?: string;
   required?: true | string;
 };

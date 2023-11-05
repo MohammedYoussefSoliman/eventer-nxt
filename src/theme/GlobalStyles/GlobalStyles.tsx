@@ -54,6 +54,7 @@ export default function GlobalStyles() {
           white-space: normal;
           font-family: "Roboto", sans-serif;
           background-color: ${colors.pallet[800]};
+          color: ${colors.pallet[0]};
         }
       `}
     />

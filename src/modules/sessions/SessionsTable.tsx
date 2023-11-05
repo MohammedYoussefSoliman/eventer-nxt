@@ -1,5 +1,7 @@
 import React from "react";
 import { useTheme } from "@emotion/react";
+import { useNavigate } from "react-router-dom";
+
 import Table from "@/components/Table";
 import { Flex } from "@/components/Grids";
 import Figure from "@/components/Figure";
@@ -17,6 +19,7 @@ export default function SessionsTable({
   ...rest
 }: SessionTableProps) {
   const { colors } = useTheme();
+  const navigate = useNavigate();
 
   const headerFormatter = (heading: string) => (
     <Flex>
@@ -86,7 +89,7 @@ export default function SessionsTable({
             <Flex gap="8px">
               <IconButton
                 icon="edit"
-                onClick={() => console.log(value)}
+                onClick={() => navigate(`/create-session?sessionId=${value}`)}
                 variant="transparent"
               />
               <IconButton

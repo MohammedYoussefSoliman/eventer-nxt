@@ -23,7 +23,7 @@ function Text({
   return (
     <StyledText
       length={textLength}
-      color={colors.text.body}
+      color={colors.text.primary}
       isHeader={isHeader}
       capitalizeFirstLetter={isHeader}
       {...rest}

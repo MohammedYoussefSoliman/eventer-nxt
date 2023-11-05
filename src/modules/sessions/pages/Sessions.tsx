@@ -2,14 +2,16 @@ import React from "react";
 import loGet from "lodash/get";
 import { showError } from "@/state/ui-actions/slice";
 import { useAxiosInstance, useAppDispatch } from "@/hooks";
+import { useNavigate } from "react-router-dom";
 import { H5 } from "@/components/Typography";
 import Spinner from "@/components/Spinner";
 import { Flex } from "@/components/Grids";
 import { Button } from "@/components/Buttons";
-import Wrapper from "./styles";
-import SessionsTable from "./SessionsTable";
+import Wrapper from "../styles";
+import SessionsTable from "../SessionsTable";
 
 export default function Visitor() {
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { get } = useAxiosInstance();
   const limit = 10;
@@ -56,7 +58,11 @@ export default function Visitor() {
     <Wrapper direction="column">
       <Flex pv="8px" pe="8px" fullWidth justify="space-between" align="center">
         <H5 text="all sessions" />
-        <Button icon="plus" variant="secondary">
+        <Button
+          onClick={() => navigate("/create-session")}
+          icon="plus"
+          variant="secondary"
+        >
           new session
         </Button>
       </Flex>

@@ -1,29 +1,20 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import devices from "@/theme/sizes";
-import { Property } from "csstype";
 import { Flex } from "@/components/Grids";
+import images from "@/assets/images";
 
 type InputWrapperProps = {
-  variant?: "outlined" | "filled";
-  width?: Property.Width;
-  height?: Property.Height;
   error?: boolean;
-  rounded?: boolean;
-  dense?: boolean;
-  borderless?: boolean;
 };
 
 type InputProps = {
-  variant?: "outlined" | "filled";
   adornment?: boolean;
-  dense?: boolean;
   error?: boolean;
 };
 
 export const Wrapper = styled(Flex)<InputWrapperProps>`
   position: relative;
-  border-radius: 10px;
   padding: 12px 16px;
   height: 50px;
   width: 100%;
@@ -31,48 +22,30 @@ export const Wrapper = styled(Flex)<InputWrapperProps>`
   outline: none;
   overflow: visible;
   ${({ theme }) => css`
-    background: ${theme.colors.pallet[100]};
+    background: ${theme.colors.pallet[500]};
   `}
-  ${({ rounded }) =>
-    rounded &&
-    css`
-      border-radius: 100px;
-    `}
   .MuiSvgIcon-root {
     width: 28px;
     height: 28px;
     ${({ theme }) => css`
-      color: ${theme.colors.pallet[600]};
+      color: ${theme.colors.pallet[0]};
     `}
   }
   &:focus-within {
     ${({ theme }) => css`
-      outline: 2px solid ${theme.colors.pallet[700]};
+      outline: 2px solid ${theme.colors.pallet[100]};
     `}
   }
-  ${({ variant, theme }) =>
-    variant === "filled"
-      ? css`
-          border: none;
-        `
-      : css`
-          border: 1px solid ${theme.colors.pallet[300]};
-        `}
-  &:hover {
-    ${({ theme, error }) =>
-      error
-        ? css`
-            background: ${theme.colors.error[100]};
-          `
-        : css`
-            background: ${theme.colors.pallet[50]};
-          `}
-  }
-  ${({ borderless }) =>
-    borderless &&
+  ${({ theme }) =>
     css`
-      border: none;
+      border: 1px solid ${theme.colors.pallet[300]};
     `}
+  &:hover {
+    ${({ theme }) =>
+      css`
+        background: ${theme.colors.pallet[400]};
+      `}
+  }
   ${({ width }) =>
     width &&
     css`
@@ -95,25 +68,6 @@ export const Wrapper = styled(Flex)<InputWrapperProps>`
     css`
       height: ${height} !important;
     `}
-    
-  ${({ dense }) =>
-    dense &&
-    css`
-      height: 30px;
-      padding: 6px 10px;
-      ${devices.md} {
-        height: 32px;
-        padding: 8px 16px;
-      }
-      ${devices.lg} {
-        height: 36px;
-        padding: 8px 16px;
-      }
-      ${devices.xl} {
-        height: 40px;
-        padding: 8px 16px;
-      }
-    `}
 `;
 
 export const Input = styled("input")<InputProps>`
@@ -123,10 +77,11 @@ export const Input = styled("input")<InputProps>`
   border: none;
   height: 100%;
   width: 100%;
-  font-size: 16px;
+  font-size: 14px;
   font-family: inherit;
+  font-weight: 300;
   ${({ theme }) => css`
-    color: ${theme.colors.text.heading};
+    color: ${theme.colors.text.primary};
   `}
   ${({ adornment }) =>
     adornment &&
@@ -136,9 +91,9 @@ export const Input = styled("input")<InputProps>`
   &::placeholder {
     font-family: inherit;
     ${({ theme }) => css`
-      color: ${theme.colors.text.body};
+      color: ${theme.colors.pallet[200]};
       font-size: 14px;
-      font-weight: 300;
+      font-weight: 200;
     `}
   }
 
@@ -152,14 +107,6 @@ export const Input = styled("input")<InputProps>`
   ${devices.lg} {
     font-size: 18px;
   }
-  ${({ dense }) =>
-    dense &&
-    css`
-      font-size: 12px;
-      ${devices.lg} {
-        font-size: 14px;
-      }
-    `}
 `;
 
 export const Label = styled("label")`
@@ -208,7 +155,7 @@ export const AreaInput = styled("textarea")<InputProps>`
 export const Sup = styled.sup`
   ${({ theme }) => css`
     display: inline;
-    color: ${theme.colors.red[700]};
+    color: ${theme.colors.text.error};
     weight: 600;
     font-size: 16px;
   `}
@@ -216,42 +163,36 @@ export const Sup = styled.sup`
 
 type FileInputWrapperProps = {
   error?: boolean;
-  loaded?: boolean;
-  loading?: boolean;
 };
 
 export const ImageWrapper = styled(Flex)<FileInputWrapperProps>`
   label: image-input-wrapper;
   position: relative;
   width: 100%;
-  height: 200px;
-  border-radius: 10px;
+  height: 180px;
   overflow: hidden;
-  ${({ loaded, theme }) =>
-    loaded
-      ? css`
-          border: none;
-        `
-      : css`
-          border: 1px solid ${theme.colors.primary[400]};
-        `}
+  .text--highlight {
+    ${({ theme }) =>
+      css`
+        color: ${theme.colors.pallet[0]};
+        font-weight: 500;
+      `}
+  }
+  .small-prev {
+    width: 160px;
+    height: 160px;
+    overflow: hidden;
+    border-radius: 50%;
+  }
+  ${({ theme }) =>
+    css`
+      border: 1px dashed ${theme.colors.pallet[300]};
+    `}
   ${({ error, theme }) =>
     error &&
     css`
-      border: 1px solid ${theme.colors.error[300]};
+      border: 1px dashed ${theme.colors.error[300]};
     `}
-  ${({ loading, theme }) =>
-    loading &&
-    css`
-      background: ${theme.colors.shades[200]};
-    `}
-  ${devices.md} {
-    border-radius: 15px;
-    width: 300px;
-  }
-  ${devices.lg} {
-    border-radius: 20px;
-  }
   .input {
     position: absolute;
     top: 0;
@@ -266,6 +207,15 @@ export const ImageWrapper = styled(Flex)<FileInputWrapperProps>`
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+  .cloud--wrapper {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    ${({ theme }) =>
+      css`
+        background: ${theme.colors.pallet[400]};
+      `}
   }
   .remove--button {
     position: absolute;
@@ -275,150 +225,11 @@ export const ImageWrapper = styled(Flex)<FileInputWrapperProps>`
   }
   &:hover {
     ${({ theme }) => css`
-      background-color: ${theme.colors.primary[50]};
+      background-color: ${theme.colors.pallet[400]};
+      .cloud--wrapper {
+        background-color: ${theme.colors.pallet[500]};
+      }
     `}
-  }
-`;
-export const SlimImageWrapper = styled(Flex)<FileInputWrapperProps>`
-  label: slim-image-input-wrapper;
-  position: relative;
-  width: 100%;
-  height: 50px;
-  border-radius: 5px;
-  overflow: hidden;
-  ${({ theme }) =>
-    css`
-      border: 1px solid ${theme.colors.grey[300]};
-      background: ${theme.colors.shades[100]};
-    `}
-  ${({ error, theme }) =>
-    error &&
-    css`
-      border: 1px solid ${theme.colors.error[300]};
-    `}
-  ${({ loading, theme }) =>
-    loading &&
-    css`
-      background: ${theme.colors.shades[200]};
-    `}
-  ${devices.md} {
-    border-radius: 8px;
-    width: 300px;
-  }
-  .input {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    cursor: pointer;
-  }
-  .preview--wrapper {
-    width: 36px;
-    height: 36px;
-    border-radius: 5px;
-    overflow: hidden;
-    ${({ theme, error }) => css`
-      border: 1px solid
-        ${error ? theme.colors.error[300] : theme.colors.pallet[500]};
-    `}
-  }
-  .preview {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  .remove--button {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    z-index: 1000;
-    ${({ theme }) => css`
-      border: 1px solid ${theme.colors.error[300]};
-    `}
-  }
-  &:hover {
-    ${({ theme }) => css`
-      background-color: ${theme.colors.pallet[50]};
-    `}
-  }
-`;
-
-export const LargeImageWrapper = styled(Flex)<FileInputWrapperProps>`
-  label: large-image-input-wrapper;
-  position: relative;
-  width: 100%;
-  height: 150px;
-  border-radius: 5px;
-  overflow: hidden;
-  ${({ theme, loaded }) =>
-    loaded
-      ? css`
-          height: 100%;
-        `
-      : css`
-          border: 1px solid ${theme.colors.purple[500]};
-          background: ${theme.colors.shades[100]};
-        `}
-  ${({ error, theme }) =>
-    error &&
-    css`
-      border: 2px solid ${theme.colors.error[300]};
-    `}
-  ${({ loading, theme }) =>
-    loading &&
-    css`
-      border: 1px solid ${theme.colors.grey[300]};
-      background: ${theme.colors.shades[200]};
-    `}
-  ${devices.md} {
-    border-radius: 8px;
-    width: 150px;
-  }
-  .input {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    cursor: pointer;
-  }
-  .preview--wrapper {
-    width: 36px;
-    height: 36px;
-    border-radius: 5px;
-    overflow: hidden;
-    ${({ theme, error }) => css`
-      border: 1px solid
-        ${error ? theme.colors.error[300] : theme.colors.pallet[500]};
-    `}
-  }
-  .preview {
-    width: 100%;
-    height: 100%;
-    border-radius: 5px;
-    object-fit: cover;
-  }
-  .remove--button {
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
-    z-index: 1000;
-    ${({ theme, loaded }) =>
-      css`
-        border: 1px solid ${theme.colors.pallet[100]};
-        background: ${loaded
-          ? theme.colors.error[300]
-          : theme.colors.grey[100]};
-      `}
-  }
-  &:hover {
-    ${({ theme }) =>
-      css`
-        background-color: ${theme.colors.pallet[50]};
-      `}
   }
 `;
 
@@ -434,7 +245,7 @@ export const TextArea = styled("textarea")<InputProps>`
   font-size: 16px;
   font-family: inherit;
   ${({ theme }) => css`
-    color: ${theme.colors.text.heading};
+    color: ${theme.colors.text.primary};
   `}
   ${({ adornment }) =>
     adornment &&
@@ -443,7 +254,7 @@ export const TextArea = styled("textarea")<InputProps>`
     `}
   &::placeholder {
     ${({ theme }) => css`
-      color: ${theme.colors.text.body};
+      color: ${theme.colors.text.primary};
       font-size: 14px;
       font-weight: 300;
     `}
@@ -458,14 +269,6 @@ export const TextArea = styled("textarea")<InputProps>`
   ${devices.lg} {
     font-size: 18px;
   }
-  ${({ dense }) =>
-    dense &&
-    css`
-      font-size: 12px;
-      ${devices.lg} {
-        font-size: 14px;
-      }
-    `}
 `;
 
 export const AreaWrapper = styled(Wrapper)`
@@ -479,4 +282,12 @@ export const AreaWrapper = styled(Wrapper)`
     height: 150px;
     width: 411px;
   }
+`;
+
+export const SmallImagePlaceHolder = styled(Flex)`
+  width: 160px;
+  height: 160px;
+  background-image: url(${images.USER_PLACEHOLDER});
+  background-size: cover;
+  background-position: center;
 `;
