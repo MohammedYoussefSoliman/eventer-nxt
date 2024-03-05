@@ -5,9 +5,10 @@ export type IconType = keyof typeof icons;
 
 type Props = {
   name: IconType;
+  dataTest?: string;
 } & SVGprop;
 
-export default function Icon({ name, ...rest }: Props) {
+export default function Icon({ name, dataTest, ...rest }: Props) {
   const SelectedIcon = icons[name];
-  return <SelectedIcon {...rest} />;
+  return <SelectedIcon dataTest={dataTest || `icon-${name}`} {...rest} />;
 }

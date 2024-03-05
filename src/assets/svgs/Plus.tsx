@@ -1,7 +1,7 @@
 import { useTheme } from "@emotion/react";
 import { SVGprop } from "./types";
 
-function Plus({ size, color }: SVGprop) {
+function Plus({ size, color, dataTest }: SVGprop) {
   const theme = useTheme();
 
   return (
@@ -11,6 +11,7 @@ function Plus({ size, color }: SVGprop) {
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      data-testid={dataTest}
     >
       <path
         d="M13 12H18.5V13H13H12.5V13.5V19H11.5V13.5V13H11H5.5V12H11H11.5V11.5V6H12.5V11.5V12H13Z"

@@ -27,7 +27,7 @@ export default function Form<T extends FieldValues>({
         className={className}
         onSubmit={methods.handleSubmit(onSubmit)}
         {...htmlProps}
-        data-testid="hook-form"
+        data-testidid="hook-form"
       >
         {typeof children === "function"
           ? children({

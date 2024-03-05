@@ -1,7 +1,7 @@
 import { useTheme } from "@emotion/react";
 import { SVGprop } from "./types";
 
-function ChevronRight({ size, color }: SVGprop) {
+function ChevronRight({ size, color, dataTest }: SVGprop) {
   const theme = useTheme();
 
   return (
@@ -11,6 +11,7 @@ function ChevronRight({ size, color }: SVGprop) {
       viewBox="0 0 16 16"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      data-testid={dataTest}
     >
       <path
         fillRule="evenodd"

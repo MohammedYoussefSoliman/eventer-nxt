@@ -1,7 +1,7 @@
 import { useTheme } from "@emotion/react";
 import { SVGprop } from "./types";
 
-function Times({ size, color }: SVGprop) {
+function Times({ size, color, dataTest }: SVGprop) {
   const theme = useTheme();
 
   return (
@@ -11,6 +11,7 @@ function Times({ size, color }: SVGprop) {
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      data-testid={dataTest}
     >
       <path
         fillRule="evenodd"
