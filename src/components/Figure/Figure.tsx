@@ -11,7 +11,9 @@ export default function Figure({ url, alt }: Props) {
   return (
     <StyledFigure>
       {url ? (
-        <img className="image" src={url} alt={alt} />
+        <div>
+          <img className="image" src={url} alt={alt} />
+        </div>
       ) : (
         <Icon name="question-mark" />
       )}

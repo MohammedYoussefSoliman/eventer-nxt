@@ -14,7 +14,7 @@ export default function Card({
     <div>
       <h3>{heading}</h3>
       {typeof content === "string" ? <p>{content}</p> : content}
-      {helperText && <small>{helperText}</small>}
+      {helperText && <small data-testid="helper-text">{helperText}</small>}
       <button type="button" onClick={onClick}>
         approve
       </button>
