@@ -4,7 +4,7 @@ import withThemeProvider from "@/AppProvider/withThemeProvider";
 import withMuiThemeProvider from "@/components/MuiThemeProvider/withMuiThemeProvider";
 import useTooltipStyles from "./useTooltipStyles";
 
-interface Props extends TooltipProps {
+export interface Props extends TooltipProps {
   tooltipStyles?: {
     [key: string]: string | number;
   };

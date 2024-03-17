@@ -3,11 +3,12 @@ import Wrapper from "./styles";
 
 type Props = {
   image?: string;
+  dataTest?: string;
 };
 
-export default function Avatar({ image }: Props) {
+export default function Avatar({ image, dataTest }: Props) {
   return (
-    <Wrapper>
+    <Wrapper data-testid={dataTest}>
       {image ? (
         <img src={image} alt="avatar_image" />
       ) : (
