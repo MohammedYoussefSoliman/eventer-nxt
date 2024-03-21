@@ -9,4 +9,7 @@ module.exports = {
     "^.+\\.tsx?$": "ts-jest",
   },
   setupFilesAfterEnv: ["<rootDir>/setupTests.ts"],
+  globals: {
+    fetch: global.fetch,
+  },
 };
